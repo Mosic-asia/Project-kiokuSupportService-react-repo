@@ -2,3 +2,4 @@
 #### Commit rule : [Gitmoji](https://gitmoji.dev/)
 
 - npm i -g gitmoji-cli     
+- gitmoji -c
