@@ -21,7 +21,6 @@ const Character = styled.img`
 const Home: React.FC = () => {
   return (
     <HomeWrapper>
-      <Header />
       <BotSpeech text="きょうは〇〇さんと昼ごはんを食べる約束です〜！" />
       <BotCharacter alt="캐릭터" />
     </HomeWrapper>
