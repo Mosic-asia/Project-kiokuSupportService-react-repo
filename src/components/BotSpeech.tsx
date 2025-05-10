@@ -7,26 +7,23 @@ interface BotSpeechProps {
 
 const SpeechBubble = styled.div`
   max-width: 90%;
-  background: #f3f3f3;
-  padding: 12px 16px;
-  border-radius: 16px;
   font-size: 1.7rem;
-  margin-top: 20%;
-  margin-bottom: 16px;
+  margin-top: 35%;
+  margin-bottom: 5%;
   position: relative;
   line-height: 1.5;
   word-break: break-word;
+  background: transparent; /* 배경을 투명하게 설정 */
 
   &::after {
     content: '';
     position: absolute;
     bottom: -10px;
     left: 20px;
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #f3f3f3 transparent transparent;
+    border: none;
   }
 `;
+
 
 const BotSpeech: React.FC<BotSpeechProps> = ({ text }) => {
   return <SpeechBubble>{text}</SpeechBubble>;
