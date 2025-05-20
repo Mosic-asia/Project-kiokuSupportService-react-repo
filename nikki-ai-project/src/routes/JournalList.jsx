@@ -3,25 +3,50 @@ import DiaryCard from '../components/DiaryCard';
 import '../styles/JournalList.css';
 
 function JournalList() {
-  const diaryData = [  // 추후 스프레드시트에서 받아온 데이터로 교체
+  const diaryData = [
     {
-      date: '2025年5月13日',
-      title: '天気がいいから散歩に行った日',
-      tags: ['散歩', 'パン屋']
+      date: '2025年5月7日',
+      title: '2025年5月7日の日記',
     },
     {
-      date: '2025年5月14日',
-      title: 'ジムに行って頑張った日',
-      tags: ['ジム', '運動']
-    }
+      date: '2025年5月8日',
+      title: '2025年5月8日の日記',
+    },
+    {
+      date: '2025年5月9日',
+      title: '2025年5月9日の日記',
+    },
+    {
+      date: '2025年5月10日',
+      title: '2025年5月10日の日記',
+    },
+    {
+      date: '2025年5月10日',
+      title: '2025年5月10日の日記',
+    },
+    {
+      date: '2025年5月10日',
+      title: '2025年5月10日の日記',
+    },
+    {
+      date: '2025年5月10日',
+      title: '2025年5月10日の日記',
+    },
   ];
 
+  // 파스텔 컬러 순환 적용
+  const pastelColors = ['#ECF6EA', '#FEF7C3', '#E5E1F1'];
+
   return (
-    <div className="journal-list-container">
+    <div className="journal-list-page">
       <Header />
-      <div className="diary-list">
+      <div className="diary-list-box">
         {diaryData.map((entry, index) => (
-          <DiaryCard key={index} {...entry} />
+          <DiaryCard
+            key={index}
+            {...entry}
+            backgroundColor={pastelColors[index % pastelColors.length]}
+          />
         ))}
       </div>
     </div>
