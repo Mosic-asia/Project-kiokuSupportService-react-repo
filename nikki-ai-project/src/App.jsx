@@ -12,7 +12,7 @@ function App() {
             <Route path="/summary" element={<Summary />} />
           </Routes>
         </div>
-        <BottomNav /> {/* 하단 내비게이션 */}
+
       </div>
     </Router>
   );
