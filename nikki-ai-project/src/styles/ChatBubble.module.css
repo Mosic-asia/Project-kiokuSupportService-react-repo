@@ -1,0 +1,35 @@
+/* styles/ChatBubble.module.css */
+
+.chatBubbleContainer {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.25rem;
+  width: 100%;
+  max-width: 70%;
+}
+
+.justifyEnd {
+  justify-content: flex-end; /* 사용자 말풍선을 오른쪽으로 정렬 */
+}
+
+.justifyStart {
+  justify-content: flex-start; /* 챗봇 말풍선을 왼쪽으로 정렬 (기본값) */
+}
+
+.bubble {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 1.25rem;
+}
+
+.userBubble {
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 1.25rem 1.25rem 0.5rem 1.25rem;
+}
+
+.otherBubble {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  border-radius: 1.25rem 1.25rem 1.25rem 0.5rem;
+}

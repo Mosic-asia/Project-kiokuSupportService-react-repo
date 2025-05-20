@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import MicIcon from "../assets/microphone.svg";
-import PlusIcon from "../assets/plus.svg";
-import SendIcon from "../assets/arrow-up.svg";
+import MicIcon from "../assets/microphone.svg"; // 경로 확인 필요
+import PlusIcon from "../assets/plus.svg";   // 경로 확인 필요
+import SendIcon from "../assets/arrow-up.svg"; // 경로 확인 필요
+import styles from "../styles/InputBox.module.css";
 
 const InputBox = ({ onSend }) => {
   const [text, setText] = useState("");
@@ -25,21 +26,21 @@ const InputBox = ({ onSend }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <div className="flex items-center">
-      <img src={MicIcon} alt="mic" className="h-6 w-6" />
-      <img src={PlusIcon} alt="plus" className="h-6 w-6 text-gray-500" />
+    <div className={styles.inputBox}>
+      <div className={styles.iconButton}>
+        <img src={MicIcon} alt="mic" className={styles.icon} />
       </div>
+      <span className={styles.plusIcon}>+</span>
       <input
         type="text"
-        className="flex-1 border rounded-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+        className={styles.inputField}
         placeholder="메시지를 입력하세요"
         value={text}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
-      <button onClick={handleSendClick} className="bg-blue-500 text-white rounded-full p-2">
-        <img src={SendIcon} alt="send" className="h-5 w-5" />
+      <button onClick={handleSendClick} className={styles.sendButton}>
+        <img src={SendIcon} alt="send" className={styles.sendIcon} />
       </button>
     </div>
   );

@@ -1,0 +1,35 @@
+/* src/components/Header.module.css */
+.header {
+  width: 100%;
+  background-color: #ffffff; /* 흰색 배경 */
+  color: #333;
+  padding: 0.5rem 1rem; /* 상하좌우 패딩 조정 */
+  display: flex;
+  justify-content: space-between; /* 로고, 홈 버튼, 사용자 영역 간 간격 벌리기 */
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0; /* 옅은 구분선 */
+  height: 60px; /* 헤더 높이 지정 */
+}
+
+.logo {
+  font-size: 1.2rem; /* 로고 폰트 크기 조정 */
+  font-weight: bold;
+}
+
+.homeButton {
+  background-color: transparent; /* 투명 배경 */
+  border: none;
+  cursor: pointer;
+  padding: 0; /* 패딩 제거 */
+}
+
+.homeIcon {
+  width: 24px; /* 홈 아이콘 크기 조정 */
+  height: 24px;
+  /* 필요하다면 홈 아이콘 색상 변경 */
+  /* filter: invert(22%) sepia(63%) saturate(2465%) hue-rotate(195deg) brightness(96%) contrast(92%); */ /* 파란색 계열 */
+}
+
+.user {
+  /* 사용자 관련 스타일 */
+}

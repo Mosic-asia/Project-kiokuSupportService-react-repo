@@ -1,0 +1,58 @@
+/* styles/InputBox.module.css */
+
+.inputBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgb(226, 226, 226);
+  border-radius: 1rem; /* 둥근 테두리 */
+  margin: 0.5rem;
+}
+
+.iconButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #757575; /* 마이크 아이콘 색상 */
+}
+
+.plusIcon {
+  color: #757575;
+  margin-left: 0.5rem;
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.inputField {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  background-color: rgb(226, 226, 226)
+}
+
+.sendButton {
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.sendIcon {
+  width: 20px;
+  height: 20px;
+}

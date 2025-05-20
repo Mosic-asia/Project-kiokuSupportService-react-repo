@@ -2,34 +2,37 @@ import React, { useState, useEffect } from "react";
 import ChatBubble from "../components/ChatBubble";
 import InputBox from "../components/InputBox";
 import { getChats, postChat } from "../api/chatApi";
-import CloudImage from "../assets/cloud.png"; // Import the cloud image
+import CloudImage from "../assets/cloud.png";
+import styles from "../styles/Chat.module.css";
+import '../styles/ChatAnimation.css'; // 애니메이션 CSS 파일 import
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    getChats().then(setMessages);
+    // getChats().then(setMessages);
+    setMessages([
+      { sender: 'other', text: '안녕하세요' },
+      { sender: 'user', text: '오늘 할 일이 있었던 것 같은데...' },
+    ]);
   }, []);
 
   const handleSend = async (text) => {
-    const response = await postChat(text);
-    setMessages((prev) => [...prev, response]);
+    // const response = await postChat(text);
+    setMessages((prev) => [...prev, { sender: 'user', text }]);
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100"> {/* Changed background color for better visual separation */}
-      {/* 채팅 영역 */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
-        <div className="flex justify-center mb-4">
-          <img src={CloudImage} alt="Cloud Avatar" className="w-32 h-32" /> {/* Placeholder Cloud Image */}
-        </div>
+    <div className={styles.chatContainer}>
+      <div className={styles.chatArea}>
         {messages.map((msg, idx) => (
           <ChatBubble key={idx} message={msg} />
         ))}
       </div>
-
-      {/* 인풋 영역 */}
-      <div className="bg-white px-4 py-3 border-t border-gray-200"> {/* Added background and border */}
+      <div className={`${styles.cloudAvatarContainer} cloud-float`}> {/* 클래스 이름 변경 */}
+        <img src={CloudImage} alt="Cloud Avatar" className={styles.cloudAvatar} />
+      </div>
+      <div className={styles.inputBoxContainer}>
         <InputBox onSend={handleSend} />
       </div>
     </div>

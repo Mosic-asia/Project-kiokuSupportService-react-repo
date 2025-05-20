@@ -8,18 +8,18 @@ import Emergency from "./routes/Emergency";
 import Reminder from "./routes/Reminder";
 import JournalList from "./routes/JournalList";
 import JournalDetail from "./routes/JournalDetail";
+import Header from "./components/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/journal-list" element={<JournalList />} />
-          </Routes>
-        </div>
-        {/* <BottomNav /> */}
+      <Header /> {/* <Routes> 컴포넌트 바깥으로 이동 */}
+      <div className="container"> {/* 헤더 아래 콘텐츠 영역 (선택 사항) */}
+        <Routes>
+          <Route path="/chat" element={<Chat />} />
+          {/* <Route path="/other" element={<OtherPage />} /> */}
+          <Route path="/" element={<Chat />} /> {/* 기본 경로 설정 (선택 사항) */}
+        </Routes>
       </div>
     </BrowserRouter>
   );
