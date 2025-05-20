@@ -1,23 +1,19 @@
+import React from "react";
+
 const ChatBubble = ({ message }) => {
+  const isUser = message.sender === "user"; // Adjust based on your message object
+
   return (
-    <div
-      style={{
-        textAlign: message.sender === "user" ? "right" : "left",
-        margin: "8px 0"
-      }}
-    >
-      <span
-        style={{
-          display: "inline-block",
-          padding: "10px 14px",
-          backgroundColor: message.sender === "user" ? "#cbe4ff" : "#eee",
-          borderRadius: "16px",
-          maxWidth: "60%",
-        }}
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+      <div
+        className={`rounded-xl py-2 px-3 text-white ${
+          isUser ? "bg-blue-500" : "bg-gray-300 text-gray-800"
+        }`}
       >
         {message.text}
-      </span>
+      </div>
     </div>
   );
 };
+
 export default ChatBubble;
