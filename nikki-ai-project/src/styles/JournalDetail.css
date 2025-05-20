@@ -1,8 +1,9 @@
 .journal-detail-page {
-    padding: 24px;
+    padding: 16px;
     background-color: #ffffff;
     min-height: 100vh;
     font-family: 'Arial', sans-serif;
+    width: 100%;
 }
 
 .journal-detail-title {

@@ -1,15 +1,18 @@
 import { useLocation } from 'react-router-dom';
 import '../styles/JournalDetail.css';
 
-function JournalDetail({ date, content, backgroundColor }) {
+function JournalDetail() {
+    const { state } = useLocation();
+    const { date, content, backgroundColor } = state || {};
+
     return (
-        <div style={{ padding: '20px' }}>
-            <h2 style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '16px' }}>
-                {date}の日記
-            </h2>
+        <div className="journal-detail-page">
+            <h2 className="journal-detail-title">{date}の日記</h2>
             <div
+                className="journal-content-box"
                 style={{
                     backgroundColor: backgroundColor || '#ECF6EA',
+                    color: '#000000',
                     padding: '20px',
                     borderRadius: '12px',
                     whiteSpace: 'pre-wrap',
@@ -23,6 +26,5 @@ function JournalDetail({ date, content, backgroundColor }) {
         </div>
     );
 }
-
 
 export default JournalDetail;
