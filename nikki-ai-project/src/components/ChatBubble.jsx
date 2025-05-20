@@ -1,13 +1,17 @@
-import React from "react";
-import styles from "../styles/ChatBubble.module.css";
+// src/components/ChatBubble.jsx
+import React from 'react';
+import styles from '../styles/ChatBubble.module.css';
 
 const ChatBubble = ({ message }) => {
-  const isUser = message.sender === "user";
+  const isUser = message.sender === 'user';
+  const bubbleClass = isUser ? styles.userBubble : styles.otherBubble;
+  const containerClass = isUser ? `${styles.chatBubbleContainer} ${styles.justifyEnd}` : `${styles.chatBubbleContainer} ${styles.justifyStart}`;
 
   return (
-    <div className={`${styles.chatBubbleContainer} ${isUser ? styles.userBubbleContainer : styles.otherBubbleContainer}`}>
-      <div className={`${styles.bubble} ${isUser ? styles.userBubble : styles.otherBubble}`}>
-        {message.text}
+    <div className={containerClass}>
+      <div className={`${styles.bubble} ${bubbleClass}`}>
+        {message.text && <p>{message.text}</p>}
+        {message.image && <img src={message.image} alt="Uploaded" style={{ maxWidth: '200px', maxHeight: '200px' }} />}
       </div>
     </div>
   );

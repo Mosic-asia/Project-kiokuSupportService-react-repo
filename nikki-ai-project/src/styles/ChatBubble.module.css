@@ -1,8 +1,10 @@
 /* styles/ChatBubble.module.css */
-
+* {
+  font-size: 1rem;
+}
 .chatBubbleContainer {
   display: flex;
-  align-items: flex-end;
+  align-items: center; /* 또는 flex-start */
   margin-bottom: 0.25rem;
   width: 100%;
 }
@@ -19,18 +21,24 @@
   padding: 0.6rem 0.8rem;
   font-size: 0.9rem;
   border-radius: 1.25rem;
-  max-width: 70%;
-
+  max-width: 80%;
+  /* height: auto; 또는 height 속성 제거 */
+  /* min-height: auto; 또는 min-height 속성 제거 */
+  /* line-height: normal; 또는 적절한 값으로 조정 */
 }
 
 .userBubble {
-  background-color: #3b82f6;
-  color: white;
-  border-radius: 1.25rem 1.25rem 0.5rem 1.25rem;
+  background-color: #e6e6e6;
+  color: rgb(0, 0, 0);
+  border-radius: 1.25rem;
+  /* height: auto; 또는 height 속성 제거 */
+  /* min-height: auto; 또는 min-height 속성 제거 */
 }
 
 .otherBubble {
-  background-color: #e5e7eb;
+  background-color: #ff964a;
   color: #1f2937;
-  border-radius: 1.25rem 1.25rem 1.25rem 0.5rem;
+  border-radius: 1.25rem;
+  /* height: auto; 또는 height 속성 제거 */
+  /* min-height: auto; 또는 min-height 속성 제거 */
 }

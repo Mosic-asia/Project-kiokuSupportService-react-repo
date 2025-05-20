@@ -1,12 +1,11 @@
 /* styles/InputBox.module.css */
-
 .inputBox {
   width: 100%;
   display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: rgb(226, 226, 226);
-  border-radius: 1rem; /* 둥근 테두리 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 0.7rem 1rem; /* 상하 패딩 증가 */
+  background-color: #EFEFEF;
+  border-radius: 1rem;
   margin: 0.5rem;
 }
 
@@ -14,22 +13,39 @@
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-right: 0.5rem;
+  margin-right: 0.8rem; /* 마이크 아이콘 오른쪽 간격 증가 */
   cursor: pointer;
+  display: flex; /* 아이콘 중앙 정렬 */
+  align-items: center;
+  justify-content: center;
+  width: 36px; /* 명시적인 너비 */
+  height: 36px; /* 명시적인 높이 */
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
-  color: #757575; /* 마이크 아이콘 색상 */
+  width: 20px;
+  height: 20px;
+  color: #757575;
 }
 
-.plusIcon {
-  color: #757575;
-  margin-left: 0.5rem;
-  margin-right: 0.8rem;
-  font-size: 1.2rem;
+.addImageButton {
+  background-color: #EFEFEF;
+  border: none;
+  padding: 0;
+  margin-right: 0.8rem; /* 이미지 추가 아이콘 오른쪽 간격 증가 */
   cursor: pointer;
+  display: flex; /* 아이콘 중앙 정렬 */
+  align-items: center;
+  justify-content: center;
+  width: 36px; /* 명시적인 너비 */
+  height: 36px; /* 명시적인 높이 */
+  border-radius: 0.5rem;
+}
+
+.addImageIcon {
+  width: 20px;
+  height: 20px;
+  color: #757575;
 }
 
 .inputField {
@@ -37,11 +53,12 @@
   border: none;
   outline: none;
   font-size: 0.9rem;
-  padding: 0.5rem 0;
-  background-color: rgb(226, 226, 226)
+  padding: 0.7rem 0; /* 상하 패딩 증가 */
+  background-color: #EFEFEF;
 }
 
 .sendButton {
+  background-color: #EFEFEF;
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -50,10 +67,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-left: 0.5rem;
+  margin-left: 0.8rem; /* 보내기 버튼 왼쪽 간격 증가 */
 }
 
 .sendIcon {
   width: 20px;
   height: 20px;
+  color: #757575;
 }
