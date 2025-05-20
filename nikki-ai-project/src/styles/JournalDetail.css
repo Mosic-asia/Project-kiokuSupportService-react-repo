@@ -1,0 +1,20 @@
+.journal-detail-page {
+    padding: 24px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.journal-detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.journal-content-box {
+    padding: 20px;
+    border-radius: 12px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    word-break: break-word;
+}
