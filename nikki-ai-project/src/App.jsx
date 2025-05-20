@@ -18,7 +18,8 @@ function App() {
         <Routes>
           <Route path="/chat" element={<Chat />} />
           {/* <Route path="/other" element={<OtherPage />} /> */}
-          <Route path="/" element={<Chat />} /> {/* 기본 경로 설정 (선택 사항) */}
+          <Route path="/journal-list" element={<JournalList />} />
+          <Route path="/journal-detail" element={<JournalDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
