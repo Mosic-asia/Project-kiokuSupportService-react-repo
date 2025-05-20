@@ -20,6 +20,8 @@ function App() {
           {/* <Route path="/other" element={<OtherPage />} /> */}
           <Route path="/journal-list" element={<JournalList />} />
           <Route path="/journal-detail" element={<JournalDetail />} />
+          <Route path="/menu" element=
+            {<Menu />} />
         </Routes>
       </div>
     </BrowserRouter>
