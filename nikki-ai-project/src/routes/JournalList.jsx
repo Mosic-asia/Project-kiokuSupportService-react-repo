@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Summary() {
+function JournalList() {
   return (
     <div>
       <h1>서머리 화면</h1>
@@ -9,4 +9,4 @@ function Summary() {
   );
 }
 
-export default Summary;
+export default JournalList;
