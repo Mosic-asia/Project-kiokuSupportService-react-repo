@@ -2,6 +2,7 @@
     background-color: #ffffff;
     min-height: 100vh;
     padding: 16px;
+    width: 100%;
 }
 
 .diary-list-box {

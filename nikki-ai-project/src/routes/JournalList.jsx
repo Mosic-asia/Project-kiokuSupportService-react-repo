@@ -1,4 +1,3 @@
-import Header from '../components/Header';
 import DiaryCard from '../components/DiaryCard';
 import '../styles/JournalList.css';
 
@@ -39,13 +38,13 @@ function JournalList() {
 
   return (
     <div className="journal-list-page">
-      <Header />
       <div className="diary-list-box">
         {diaryData.map((entry, index) => (
           <DiaryCard
             key={index}
             {...entry}
             backgroundColor={pastelColors[index % pastelColors.length]}
+            onClick={() => navigateToDetail(diary)}
           />
         ))}
       </div>
