@@ -2,9 +2,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: #ffffff;
-  padding-top: 2.5rem; /* Header 공간 */
+  height: 90vh; /* 또는 다른 높이 값 */
+  /* align-items: 값; <--- 이 속성 확인 */
 }
 
 .chatArea {
@@ -14,12 +13,14 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  margin-bottom: 1rem; /* 기존 값에서 줄여보세요 */
 }
 
 .cloudAvatarContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  /* margin-bottom: 값; (이 값은 아바타 아래 공간에 영향) */
 }
 
 .cloudAvatarWrapper {
@@ -36,8 +37,6 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 20%);
-  background-color: white;
-  border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 2.5rem;
   height: 2.5rem;
@@ -53,4 +52,25 @@
   background-color: white;
   padding: 0.5rem 1rem;
   border-top: 1px solid #e5e7eb;
+}
+
+.hiddenChatArea {
+  display: none;
+}
+
+.expandedAvatar {
+  width: 20rem !important; /* 더 큰 아바타 크기 */
+  height: 20rem !important;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out; /* 부드러운 애니메이션 */
+}
+
+.voiceBar {
+  position: fixed;
+  bottom: 60px; /* 인풋 박스 위에 위치 */
+  left: 0;
+  right: 0;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  text-align: center;
+  z-index: 15; /* 인풋 박스 위에 표시 */
 }

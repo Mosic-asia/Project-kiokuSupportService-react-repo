@@ -5,7 +5,6 @@
   align-items: flex-end;
   margin-bottom: 0.25rem;
   width: 100%;
-  max-width: 70%;
 }
 
 .justifyEnd {
@@ -20,6 +19,8 @@
   padding: 0.6rem 0.8rem;
   font-size: 0.9rem;
   border-radius: 1.25rem;
+  max-width: 70%;
+
 }
 
 .userBubble {

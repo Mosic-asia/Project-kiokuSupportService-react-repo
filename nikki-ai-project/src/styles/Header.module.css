@@ -7,8 +7,7 @@
   display: flex;
   justify-content: space-between; /* 로고, 홈 버튼, 사용자 영역 간 간격 벌리기 */
   align-items: center;
-  border-bottom: 1px solid #e0e0e0; /* 옅은 구분선 */
-  height: 60px; /* 헤더 높이 지정 */
+  height: 50px; /* 헤더 높이 지정 */
 }
 
 .logo {
