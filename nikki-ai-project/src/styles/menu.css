@@ -1,0 +1,77 @@
+.menu-container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    min-height: 100vh;
+    padding: 0 16px;
+    box-sizing: border-box;
+    /* 패딩이 너비에 포함되도록 */
+}
+
+/* 긴급 연락처 버튼 스타일 */
+.emergency-contact-button {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #ff9147;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    /* 상단 여백 */
+    margin-bottom: 30px;
+    /* 하단 여백 */
+    box-shadow: 0 4px 8px rgba(255, 145, 71, 0.3);
+    /* 그림자 */
+    transition: background-color 0.3s ease;
+}
+
+.emergency-contact-button:hover {
+    background-color: #e6803e;
+    /* 호버 시 색상 변경 */
+}
+
+/* 메뉴 그리드 스타일 */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2열 */
+    gap: 15px;
+    /* 그리드 아이템 사이 간격 */
+    padding-bottom: 20px;
+    /* 하단 여백 */
+}
+
+.menu-item {
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    height: 100px;
+    /* 아이템 높이 */
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 필요하다면 active 상태도 추가할 수 있습니다. */
+.menu-item:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* .item-text {
+    텍스트 스타일
+} */
