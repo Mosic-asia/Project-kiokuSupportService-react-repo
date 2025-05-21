@@ -1,8 +1,35 @@
 #root {
-  max-width: 1280px;
+  max-width: 375px;
+  /* 모바일 화면 너비에 맞게 조정 */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* 중앙 정렬 유지 */
+  padding: 0;
+  /* #root의 패딩 제거 */
+  /* text-align: center; */
+  /* 필요 없으면 제거 */
+  min-height: 100vh;
+  /* 화면 높이를 채우도록 */
+  display: flex;
+  /* 자식 요소들을 위한 flex 컨테이너 */
+  flex-direction: column;
+  /* 자식 요소들을 세로로 쌓음 */
+  /* align-items: center; */
+  /* 자식 요소들을 수평 중앙 정렬 (Header나 container가 width:100%이므로 불필요할 수 있음) */
+  /* background-color: white; (선택 사항: 페이지 배경색) */
+}
+
+.container {
+  /* App.jsx의 <div className="container"> */
+  width: 100%;
+  /* #root의 너비를 100% 사용 */
+  flex: 1;
+  /* 남은 수직 공간을 채움 */
+  overflow-y: auto;
+  /* 내용이 넘치면 스크롤 바 생성 */
+  background-color: #ffffff;
+  /* Menu.jsx의 배경색과 일치 (선택 사항) */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Menu.jsx와 유사한 그림자 (선택 사항) */
 }
 
 .logo {
@@ -11,9 +38,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +51,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
