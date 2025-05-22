@@ -7,64 +7,96 @@ import CloudImage from "../assets/cloud.png";
 import styles from "../styles/Chat.module.css";
 import "../styles/ChatAnimation.css";
 
-import { postMemoryQuiz } from "../api/memoryQuizApi";
+// 퀴즈 더미 시나리오
+const quizDummy = [
+  {
+    question: "Do you remember when you usually take your medicine?",
+    answer: "8 PM",
+    hint: "It's after dinner.",
+    correctFeedback: "That's right! Well remembered.",
+    wrongFeedback: "Hmm, not quite.",
+  },
+  {
+    question: "Do you remember which day your daughter usually visits?",
+    answer: "Saturday",
+    hint: "It's the weekend.",
+    correctFeedback: "That's right! Well remembered.",
+    wrongFeedback: "Not quite. Try to remember the day!",
+  },
+];
 
-const USER_ID = 1; // 실제 로그인 사용자에 맞게 변경
+const USER_ID = 1;
 
 const Talk = () => {
   const [messages, setMessages] = useState([]);
+  const [quizIdx, setQuizIdx] = useState(0);
+  const [attempt, setAttempt] = useState(1);
   const [isVoiceRecording, setIsVoiceRecording] = useState(false);
   const [error, setError] = useState(null);
   const chatAreaRef = useRef(null);
 
-  // 첫 진입 시 퀴즈 시작
+  // 첫 진입 시 첫 질문
   useEffect(() => {
-    handleQuizStep();
+    if (quizDummy[quizIdx]) {
+      setMessages([
+        { sender: "other", text: quizDummy[quizIdx].question }
+      ]);
+    }
     // eslint-disable-next-line
   }, []);
 
-  // Memory Quiz API 명세에 맞게 퀴즈 진행
-  const handleQuizStep = async (user_response = null) => {
-    try {
-      const data = await postMemoryQuiz(USER_ID, user_response, "memory quiz ongoing");
-      const newMessages = [];
+  // 퀴즈 진행 (더미)
+  const handleQuizStep = (user_response = null) => {
+    if (!quizDummy[quizIdx]) return;
+    const q = quizDummy[quizIdx];
+    const newMessages = [];
 
-      // 사용자의 답변 표시
-      if (user_response) {
-        newMessages.push({ sender: "user", text: user_response });
+    if (user_response) {
+      newMessages.push({ sender: "user", text: user_response });
+
+      if (user_response.trim().toLowerCase() === q.answer.toLowerCase()) {
+        newMessages.push({ sender: "other", text: q.correctFeedback });
+        // 다음 문제로 이동
+        if (quizDummy[quizIdx + 1]) {
+          setTimeout(() => {
+            setMessages((prev) => [
+              ...prev,
+              { sender: "other", text: quizDummy[quizIdx + 1].question }
+            ]);
+            setQuizIdx(quizIdx + 1);
+            setAttempt(1);
+          }, 1000);
+        }
+      } else if (attempt === 1) {
+        newMessages.push({ sender: "other", text: `ヒント: ${q.hint}` });
+        newMessages.push({ sender: "other", text: q.wrongFeedback });
+        setAttempt(2);
+      } else {
+        newMessages.push({ sender: "other", text: `正解は: ${q.answer}` });
+        // 다음 문제로 이동
+        if (quizDummy[quizIdx + 1]) {
+          setTimeout(() => {
+            setMessages((prev) => [
+              ...prev,
+              { sender: "other", text: quizDummy[quizIdx + 1].question }
+            ]);
+            setQuizIdx(quizIdx + 1);
+            setAttempt(1);
+          }, 1000);
+        }
       }
-
-      // 피드백(정답/오답) 표시
-      if (data.ai_feedback) {
-        newMessages.push({ sender: "other", text: data.ai_feedback });
-      }
-
-      // 정답 공개
-      if (data.show_answer && data.question) {
-        newMessages.push({
-          sender: "other",
-          text: data.question, // 명세상 정답 및 안내가 question에 포함됨
-        });
-      } else if (data.question) {
-        // 다음 질문 또는 힌트
-        newMessages.push({ sender: "other", text: data.question });
-      }
-
-      setMessages((prev) => [...prev, ...newMessages]);
-    } catch (err) {
-      setError(err.message);
     }
+
+    setMessages((prev) => [...prev, ...newMessages]);
   };
 
-  // 답변 전송
   const handleSend = async (text) => {
-    await handleQuizStep(text);
+    handleQuizStep(text);
   };
 
   const handleMicClick = () => setIsVoiceRecording(true);
   const handleStopRecording = () => setIsVoiceRecording(false);
 
-  // 스크롤 항상 아래로
   useEffect(() => {
     if (chatAreaRef.current) {
       chatAreaRef.current.scrollTo({

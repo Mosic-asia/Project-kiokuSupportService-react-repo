@@ -59,11 +59,13 @@ body {
   }
   
 
-.expandedAvatar {
+  .expandedAvatar {
 
-  margin-bottom: 4.5rem;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-}
+    width: 15rem !important;
+    height: 15rem !important;
+    margin-bottom: 0;
+    transition: none;
+  }
 
 
 .userIconPlaceholder {

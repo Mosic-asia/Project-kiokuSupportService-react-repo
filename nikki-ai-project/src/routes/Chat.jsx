@@ -7,73 +7,58 @@ import CloudImage from "../assets/cloud.png";
 import styles from "../styles/Chat.module.css";
 import "../styles/ChatAnimation.css";
 
-import { getInitialChat, postUserMessage, endChatSession } from "../api/chatApi";
+// 더미 데이터 시나리오
+const chatDummy = [
+  {
+    sender: "other",
+    text: "Good morning! Did you have breakfast today?",
+    timestamp: "2025-05-19T17:30:00",
+  },
+  {
+    sender: "user",
+    text: "Yes, I had toast and tea.",
+    timestamp: "2025-05-19T17:31:00",
+  },
+  {
+    sender: "other",
+    text: "That sounds nice! Do you usually eat breakfast at this time?",
+    timestamp: "2025-05-19T17:32:00",
+  },
+];
 
-const USER_ID = 1; // 실제 로그인 사용자에 맞게 변경
+const aiReplies = [
+  "That sounds delicious! What did you have with your tea?",
+  "Do you take any medicine in the morning?",
+  "Thanks for sharing! How are you feeling today?",
+];
+
+const USER_ID = 1;
 
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([chatDummy[0]]);
   const [isVoiceRecording, setIsVoiceRecording] = useState(false);
   const [error, setError] = useState(null);
   const chatAreaRef = useRef(null);
+  const [aiIndex, setAiIndex] = useState(0);
 
-  // 1. 대화 시작 (API 1)
-  useEffect(() => {
-    const fetchInitial = async () => {
-      try {
-        const data = await getInitialChat(USER_ID);
-        setMessages([
-          {
-            sender: "other",
-            text: data.ai_response,
-            timestamp: data.timestamp,
-          },
-        ]);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    fetchInitial();
-
-    // 4. 언마운트 시 대화 종료 (API 4)
-    return () => {
-      endChatSession(USER_ID).catch(() => {});
-    };
-  }, []);
-
-  // 2. 대화 계속 (API 2)
+  // 더미: 첫 메시지만 보여주고, 나머지는 입력 시 추가
   const handleSend = async (text) => {
     setMessages((prev) => [
       ...prev,
       { sender: "user", text, timestamp: new Date().toISOString() },
     ]);
-    try {
-      const data = await postUserMessage(USER_ID, text);
-
-      // detected_reminder가 있다면 별도 처리 (예: 알림 표시)
-      if (data.detected_reminder) {
-        // 예시: 리마인더를 메시지로 추가
-        setMessages((prev) => [
-          ...prev,
-          {
-            sender: "other",
-            text: `리마인더 감지됨: ${data.detected_reminder.reminder} (${data.detected_reminder.time || ""})`,
-            timestamp: data.timestamp,
-          },
-        ]);
-      }
-
+    // 1초 후 AI 답변 추가 (더미)
+    setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         {
           sender: "other",
-          text: data.ai_response,
-          timestamp: data.timestamp,
+          text: aiReplies[aiIndex % aiReplies.length],
+          timestamp: new Date().toISOString(),
         },
       ]);
-    } catch (err) {
-      setError(err.message);
-    }
+      setAiIndex((idx) => idx + 1);
+    }, 700);
   };
 
   const handleMicClick = () => setIsVoiceRecording(true);

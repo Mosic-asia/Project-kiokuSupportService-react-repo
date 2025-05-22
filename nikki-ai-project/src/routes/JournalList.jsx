@@ -1,28 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DiaryCard from '../components/DiaryCard';
 import '../styles/JournalList.css';
 
-const USER_ID = 1; // 실제 로그인된 유저 ID로 대체
-
 const pastelColors = ['#ECF6EA', '#FEF7C3', '#E5E1F1'];
+
+// 더미 데이터
+const dummyJournals = [
+  { id: 1, start_datetime: "2025-05-07T09:00:00", title: "A Calm Morning and My Evening Routine" },
+  { id: 2, start_datetime: "2025-05-08T10:00:00", title: "A Rainy Day Reflection" },
+  { id: 3, start_datetime: "2025-05-09T11:00:00", title: "Weekend Adventures" },
+];
+
+function formatDateJP(dateStr) {
+  const d = new Date(dateStr);
+  return `${d.getMonth() + 1}年${d.getDate()}月日`;
+}
 
 function JournalList() {
   const navigate = useNavigate();
-  const [journals, setJournals] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`/api/users/${USER_ID}/journals`)
-      .then(res => res.json())
-      .then(data => {
-        setJournals(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
-  if (loading) return <div className="journal-list-page">Loading...</div>;
+  const journals = dummyJournals; // API 대신 더미 데이터 사용
 
   return (
     <div className="journal-list-page">
@@ -30,7 +26,7 @@ function JournalList() {
         {journals.map((journal, index) => (
           <DiaryCard
             key={journal.id}
-            date={journal.start_datetime ? journal.start_datetime.slice(0, 10).replace(/-/g, '年').replace(/年(\d{2})$/, '年$1月') + '日' : ''}
+            date={formatDateJP(journal.start_datetime)}
             title={journal.title}
             backgroundColor={pastelColors[index % pastelColors.length]}
             onClick={() =>
