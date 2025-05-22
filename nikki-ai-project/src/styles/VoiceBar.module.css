@@ -1,44 +1,43 @@
-/* styles/VoiceBar.module.css */
 .voiceBar {
   position: fixed;
-  bottom: 80px;
+  bottom: 40px; /* 너무 아래로 붙지 않게 조절 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  align-items: center;
-  padding: 1rem;
-  z-index: 15;
+  gap: 6px;
+  padding: 10px 16px;
+  z-index: 10000;
   cursor: pointer;
-  border-radius: 10px;
-  width: auto;
-  gap: 15px;
 }
 
 .bar {
-  width: 8px;
-  height: 25px;
-  border-radius: 4px;
-  animation: pulse 0.5s infinite alternate;
+  width: 6px;
+  height: 20px;
+  border-radius: 3px;
+  animation: pulse 0.8s infinite ease-in-out alternate;
   transform-origin: bottom;
 }
 
 .bar1 {
-  background-color: #B9CEBD; /* Your light green */
+  background-color: #B9CEBD;
+  animation-delay: 0s;
 }
 
 .bar2 {
-  background-color: #B0A7C7; /* Your light purple */
+  background-color: #B0A7C7;
+  animation-delay: 0.15s;
 }
 
 .bar3 {
-  background-color: #FEBFAC; /* Your light orange */
+  background-color: #FEBFAC;
+  animation-delay: 0.3s;
 }
 
 @keyframes pulse {
   0% {
-    transform: scaleY(0.4);
+    transform: scaleY(0.5);
   }
   100% {
-    transform: scaleY(1.0);
+    transform: scaleY(1.2);
   }
 }

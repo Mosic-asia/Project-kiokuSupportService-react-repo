@@ -1,13 +1,12 @@
-// src/Chat.jsx
+// src/routes/Chat.jsx
 import React, { useState, useEffect, useRef } from "react";
 import ChatBubble from "../components/ChatBubble";
 import InputBox from "../components/InputBox";
-import VoiceBar from "../components/VoiceBar"; // VoiceBar 컴포넌트 import
+import VoiceBar from "../components/VoiceBar";
 import { getChats, postChat } from "../api/chatApi";
 import CloudImage from "../assets/cloud.png";
 import styles from "../styles/Chat.module.css";
 import '../styles/ChatAnimation.css';
-import MicIcon from '../assets/microphone.png';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
@@ -17,7 +16,6 @@ const Chat = () => {
   const [isVoiceRecording, setIsVoiceRecording] = useState(false);
 
   const chatAreaRef = useRef(null);
-  const inputBoxContainerRef = useRef(null); // 인풋 박스 컨테이너 ref
 
   useEffect(() => {
     // getChats().then(setMessages);
@@ -29,46 +27,44 @@ const Chat = () => {
   };
 
   const handleMicClick = () => {
-    setIsVoiceRecording(!isVoiceRecording);
-    if (chatAreaRef.current) {
-      chatAreaRef.current.classList.toggle(styles.hiddenChatArea);
-      chatAreaRef.current.scrollTop = 0;
-    }
-    // 인풋 박스 visibility 제어
-    if (inputBoxContainerRef.current) {
-      inputBoxContainerRef.current.style.display = isVoiceRecording ? 'none' : 'flex';
-    }
+    setIsVoiceRecording(true);
   };
 
   const handleStopRecording = () => {
     setIsVoiceRecording(false);
-    if (chatAreaRef.current) {
-      chatAreaRef.current.classList.remove(styles.hiddenChatArea);
-    }
-    // 인풋 박스 visibility 제어
-    if (inputBoxContainerRef.current) {
-      inputBoxContainerRef.current.style.display = 'flex';
-    }
     // 실제 음성 인식 종료 및 처리 로직 추가
   };
 
   return (
     <div className={styles.chatContainer}>
-      <div className={styles.chatArea} ref={chatAreaRef}>
-        {messages.map((msg, idx) => (
-          <ChatBubble key={idx} message={msg} />
-        ))}
+      {/* 항상 보여야 하는 채팅 영역 + 캐릭터 */}
+      <div className={styles.chatContentWrapper}>
+        <div className={styles.chatArea} ref={chatAreaRef}>
+          {messages.map((msg, idx) => (
+            <ChatBubble key={idx} message={msg} />
+          ))}
+        </div>
+        <div className={styles.cloudAvatarContainer}>
+          <img
+            src={CloudImage}
+            alt="Cloud Avatar"
+            className={`${styles.cloudAvatar} cloud-float`}
+          />
+        </div>
       </div>
-      <div className={styles.cloudAvatarContainer}>
-        <img
-          src={CloudImage}
-          alt="Cloud Avatar"
-          className={`${styles.cloudAvatar} cloud-float`}
-        />
-      </div>
-      <div className={styles.inputBoxContainer} ref={inputBoxContainerRef} style={{ display: isVoiceRecording ? 'none' : 'flex' }}>
-        <InputBox onSend={handleSend} onMicClick={handleMicClick} isVoiceRecording={isVoiceRecording} />
-      </div>
+
+      {/* 인풋 박스는 보이스 모드 아닐 때만 */}
+      {!isVoiceRecording && (
+        <div className={styles.inputBoxContainer}>
+          <InputBox
+            onSend={handleSend}
+            onMicClick={handleMicClick}
+            isVoiceRecording={isVoiceRecording}
+          />
+        </div>
+      )}
+
+      {/* 보이스 모드일 때만 보이스 바 */}
       {isVoiceRecording && <VoiceBar onStopRecording={handleStopRecording} />}
     </div>
   );

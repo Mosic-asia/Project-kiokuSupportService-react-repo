@@ -55,6 +55,8 @@
   font-size: 0.9rem;
   padding: 0.7rem 0; /* 상하 패딩 증가 */
   background-color: #EFEFEF;
+  height: 100%; /* ← 이 줄 추가 */
+
 }
 
 .sendButton {
