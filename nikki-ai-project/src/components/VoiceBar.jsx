@@ -37,9 +37,9 @@ const VoiceBar = ({ onStopRecording }) => {
 
   return (
     <div className={styles.voiceBar} onClick={onStopRecording}> {/* 클릭 시 녹음 종료 함수 호출 */}
-      <div className={styles.bar} ref={bar1Ref} className={styles.bar1}></div> {/* 클래스 이름 추가 */}
-      <div className={styles.bar} ref={bar2Ref} className={styles.bar2}></div> {/* 클래스 이름 추가 */}
-      <div className={styles.bar} ref={bar3Ref} className={styles.bar3}></div> {/* 클래스 이름 추가 */}
+      <div className={`${styles.bar} ${styles.bar1}`} ref={bar1Ref}></div>
+      <div className={`${styles.bar} ${styles.bar2}`} ref={bar2Ref}></div>
+      <div className={`${styles.bar} ${styles.bar3}`} ref={bar3Ref}></div>
     </div>
   );
 };

@@ -1,11 +1,10 @@
-// src/components/ChatBubble.jsx
 import React from 'react';
 import styles from '../styles/ChatBubble.module.css';
 
 const ChatBubble = ({ message }) => {
   const isUser = message.sender === 'user';
   const bubbleClass = isUser ? styles.userBubble : styles.otherBubble;
-  const containerClass = isUser ? `${styles.chatBubbleContainer} ${styles.justifyEnd}` : `${styles.chatBubbleContainer} ${styles.justifyStart}`;
+  const containerClass = `${styles.chatBubbleContainer} ${isUser ? styles.justifyEnd : styles.justifyStart}`;
 
   return (
     <div className={containerClass}>

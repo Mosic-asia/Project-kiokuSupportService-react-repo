@@ -1,13 +1,12 @@
 body {
   background-color: white;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .chatContainer {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  max-width: 100vw;
-  overflow-x: hidden;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,55 +15,34 @@ body {
 }
 
 .chatContentWrapper {
-  flex: 1 1 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* 내부 스크롤은 chatArea에만 */
   position: relative;
+  overflow-y: auto;
 }
 
 .chatArea {
-  flex: 1 1 auto;
+  flex: 1;
   padding: 16px;
   overflow-y: auto;
-}
-.topFade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40px; /* 흐릿한 범위 조절 가능 */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  pointer-events: none; /* 클릭 이벤트 차단 안 되도록 */
-  z-index: 2;
 }
 
 .cloudAvatarContainer {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem; /* 아바타 아래 공간 */
-  flex-shrink: 0;      /* 크기 줄지 않도록 */
-  background-color: transparent;
-}
- 
-  .cloudAvatarWrapper {
-    position: relative;
-  }
-  
-  .cloudAvatar {
-    width: 14rem;
-    height: 14rem;
-    display: block;            /* 이미지 중앙정렬시 inline-block 대신 block */
-  }
-  
-
-.expandedAvatar {
-
-  margin-bottom: 4.5rem;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+  margin-bottom: 5%;
 }
 
+.cloudAvatarWrapper {
+  position: relative;
+}
+
+.cloudAvatar {
+  width: 14rem;
+  height: 14rem;
+}
 
 .userIconPlaceholder {
   position: absolute;
@@ -83,14 +61,11 @@ body {
 }
 
 .inputBoxContainer {
+  width: 100%;
   padding: 12px 16px;
   box-sizing: border-box;
   background-color: white;
-  flex-shrink: 0; /* 크기 줄지 않도록 */
-  height: 150px;    /* 원하는 고정 높이 */
-  overflow-x: hidden;
 }
-
 
 .hiddenChatArea {
   display: none;
@@ -102,3 +77,13 @@ body {
   transition: width 0.3s ease-in-out, height 0.3s ease-in-out; /* 부드러운 애니메이션 */
 }
 
+.voiceBar {
+  position: fixed;
+  bottom: 60px; /* 인풋 박스 위에 위치 */
+  left: 0;
+  right: 0;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  text-align: center;
+  z-index: 15; /* 인풋 박스 위에 표시 */
+}

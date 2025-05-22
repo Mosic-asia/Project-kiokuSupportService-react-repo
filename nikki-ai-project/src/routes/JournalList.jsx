@@ -1,36 +1,43 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DiaryCard from '../components/DiaryCard';
 import '../styles/JournalList.css';
 
+const USER_ID = 1; // 실제 로그인된 유저 ID로 대체
+
+const pastelColors = ['#ECF6EA', '#FEF7C3', '#E5E1F1'];
+
 function JournalList() {
   const navigate = useNavigate();
+  const [journals, setJournals] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const diaryData = [
-    { date: '2025年5月7日', title: '2025年5月7日の日記' },
-    { date: '2025年5月8日', title: '2025年5月8日の日記' },
-    { date: '2025年5月9日', title: '2025年5月9日の日記' },
-    { date: '2025年5月10日', title: '2025年5月10日の日記' },
-    { date: '2025年5月10日', title: '2025年5月10日の日記' },
-    { date: '2025年5月10日', title: '2025年5月10日の日記' },
-    { date: '2025年5月10日', title: '2025年5月10日の日記' },
-  ];
+  useEffect(() => {
+    fetch(`/api/users/${USER_ID}/journals`)
+      .then(res => res.json())
+      .then(data => {
+        setJournals(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
-  const pastelColors = ['#ECF6EA', '#FEF7C3', '#E5E1F1'];
+  if (loading) return <div className="journal-list-page">Loading...</div>;
 
   return (
     <div className="journal-list-page">
       <div className="diary-list-box">
-        {diaryData.map((entry, index) => (
+        {journals.map((journal, index) => (
           <DiaryCard
-            key={index}
-            {...entry}
+            key={journal.id}
+            date={journal.start_datetime ? journal.start_datetime.slice(0, 10).replace(/-/g, '年').replace(/年(\d{2})$/, '年$1月') + '日' : ''}
+            title={journal.title}
             backgroundColor={pastelColors[index % pastelColors.length]}
             onClick={() =>
-              navigate('/journal-detail', {
+              navigate(`/journal-detail/${journal.id}`, {
                 state: {
-                  ...entry,
+                  journalId: journal.id,
                   backgroundColor: pastelColors[index % pastelColors.length],
-                  content: 'API로 받아올 내용입니다\n줄바꿈 테스트용 텍스트입니다.\n다양한 줄의 내용이 있습니다.\n미묘하게 움직이고 있네.\n미묘한 움직임.. 아이고 잠와라 잠오는건 아닌데 너무 피곤해~~',
                 },
               })
             }

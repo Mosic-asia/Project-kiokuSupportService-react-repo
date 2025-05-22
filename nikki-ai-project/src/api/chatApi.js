@@ -1,20 +1,36 @@
-// 예: chatApi.js
-export const getChats = async () => {
-  const res = await fetch("/api/chat");
+// src/api/chatApi.js
+
+export const getInitialChat = async (userId) => {
+  const res = await fetch(`/api/users/${userId}/chat/start`);
   if (!res.ok) {
-    throw new Error("Failed to fetch chats");
+    const errorText = await res.text();
+    throw new Error(`챗봇 시작 요청 실패: ${res.status} ${errorText}`);
   }
-  return res.json(); // HTML이 아닌 JSON이 반환되어야 함
+  return res.json();
 };
 
-export const postChat = async (text) => {
-  const res = await fetch("/api/chat", {
+export const postUserMessage = async (userId, text) => {
+  const res = await fetch(`/api/users/${userId}/chat/continue`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ user_id: userId, user_response: text }),
   });
   if (!res.ok) {
-    throw new Error("Failed to post chat");
+    const errorText = await res.text();
+    throw new Error(`챗봇 응답 요청 실패: ${res.status} ${errorText}`);
+  }
+  return res.json();
+};
+
+export const endChatSession = async (userId) => {
+  const res = await fetch(`/api/users/${userId}/chat/end`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: userId }),
+  });
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`챗봇 종료 요청 실패: ${res.status} ${errorText}`);
   }
   return res.json();
 };

@@ -1,12 +1,15 @@
 /* styles/InputBox.module.css */
 .inputBox {
-  width: 100%;
+  width: 100%;          /* 100vw → 100%로 변경 */
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   display: flex;
-  align-items: center; /* 세로 중앙 정렬 */
-  padding: 0.7rem 1rem; /* 상하 패딩 증가 */
+  align-items: center;
+  padding: 0.7rem 1rem;
   background-color: #EFEFEF;
   border-radius: 1rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .iconButton {
@@ -53,10 +56,14 @@
   border: none;
   outline: none;
   font-size: 0.9rem;
-  padding: 0.7rem 0; /* 상하 패딩 증가 */
+  padding: 0.7rem 0;
   background-color: #EFEFEF;
-  height: 100%; /* ← 이 줄 추가 */
+  height: 100%;
+  overflow-x: hidden;
 
+  /* ✨ 고정 너비 제거 */
+  width: auto;      /* 또는 아예 이 줄 삭제 */
+  min-width: 0;     /* ✅ flex 안에서 넘치지 않게 반드시 넣기 */
 }
 
 .sendButton {
