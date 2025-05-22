@@ -4,7 +4,7 @@ import '../styles/JournalList.css';
 
 const pastelColors = ['#ECF6EA', '#FEF7C3', '#E5E1F1'];
 
-// 더미 데이터
+// dummy data
 const dummyJournals = [
   { id: 1, start_datetime: "2025-05-07T09:00:00", title: "A Calm Morning and My Evening Routine" },
   { id: 2, start_datetime: "2025-05-08T10:00:00", title: "A Rainy Day Reflection" },
@@ -18,7 +18,7 @@ function formatDateJP(dateStr) {
 
 function JournalList() {
   const navigate = useNavigate();
-  const journals = dummyJournals; // API 대신 더미 데이터 사용
+  const journals = dummyJournals; // APIのかわりにdummyーdata使用
 
   return (
     <div className="journal-list-page">
