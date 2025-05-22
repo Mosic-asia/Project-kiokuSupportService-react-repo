@@ -9,6 +9,8 @@ import Reminder from "./routes/Reminder";
 import JournalList from "./routes/JournalList";
 import JournalDetail from "./routes/JournalDetail";
 import Header from "./components/Header";
+import Talk from "./routes/Talk";
+import Setting from "./routes/Setting";
 
 function App() {
   return (
@@ -17,11 +19,13 @@ function App() {
       <div className="container"> {/* 헤더 아래 콘텐츠 영역 (선택 사항) */}
         <Routes>
           <Route path="/chat" element={<Chat />} />
-          {/* <Route path="/other" element={<OtherPage />} /> */}
+          <Route path="/emergency" element={<Emergency />} />
           <Route path="/journal-list" element={<JournalList />} />
           <Route path="/journal-detail" element={<JournalDetail />} />
-          <Route path="/menu" element=
-            {<Menu />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/my-info" element={<MyInfo />} />
+          <Route path="/talk" element={<Talk />} />
+          <Route path="/setting" element={<Setting />} />
         </Routes>
       </div>
     </BrowserRouter>

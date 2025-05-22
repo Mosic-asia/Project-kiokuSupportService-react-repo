@@ -6,9 +6,11 @@ const Menu = () => {
     return (
         <div className="menu-container">
             {/* 緊急連絡先 */}
-            <button className="emergency-contact-button">
-                緊急連絡先
-            </button>
+            <Link to="/emergency">
+              <button className="emergency-contact-button">
+                  緊急連絡先
+              </button>
+            </Link>
 
             {/* 메뉴 아이템 */}
             <div className="menu-grid">
