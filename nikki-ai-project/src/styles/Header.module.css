@@ -1,6 +1,7 @@
 .header {
   width: 100vw;
   max-width: 430px;
+  margin: 0 auto;
   height: 56px;
   background: #fff;
   color: #222;
@@ -16,7 +17,7 @@
 
 .title {
   margin: 15px 15px;
-  font-size: 1.5rem;   
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #222;
@@ -60,9 +61,11 @@
     height: 48px;
     padding: 0 10px;
   }
+
   .title {
     font-size: 1.5rem;
   }
+
   .homeIcon {
     width: 23px;
     height: 23px;
